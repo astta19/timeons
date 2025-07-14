@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Matheus Sousa da Cruz - Consultor em TI</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #1a1a1a 0%, #4a4a4a 50%, #e8e8e8 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .hero {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 60px 40px;
+            margin-bottom: 30px;
+            text-align: center;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo {
+            display: inline-block;
+            position: relative;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: translateY(-2px);
+        }
+
+        .logo-text {
+            font-size: 3.5em;
+            font-weight: 900;
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 50%, #1a1a1a 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -2px;
+            position: relative;
+            display: inline-block;
+            text-shadow: 0 4px 8px rgba(44, 62, 80, 0.3);
+        }
+
+        .logo-text::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(44, 62, 80, 0.1), rgba(52, 73, 94, 0.1));
+            border-radius: 12px;
+            transform: skew(-3deg) rotate(-1deg);
+            z-index: -1;
+            transition: all 0.3s ease;
+        }
+
+        .logo:hover .logo-text::before {
+            transform: skew(-3deg) rotate(-1deg) scale(1.05);
+            background: linear-gradient(135deg, rgba(44, 62, 80, 0.15), rgba(52, 73, 94, 0.15));
+        }
+
+        .logo-subtitle {
+            font-size: 0.3em;
+            font-weight: 500;
+            letter-spacing: 8px;
+            color: #34495e;
+            text-transform: uppercase;
+            margin-top: -5px;
+            text-align: center;
+            opacity: 0.8;
+        }
+
+        .logo-accent {
+            position: absolute;
+            width: 4px;
+            height: 70%;
+            background: linear-gradient(to bottom, #2c3e50, #34495e);
+            right: -20px;
+            top: 15%;
+            border-radius: 2px;
+            box-shadow: 0 2px 4px rgba(44, 62, 80, 0.3);
+        }
+
+        .logo-accent::after {
+            content: '';
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background: #34495e;
+            border-radius: 50%;
+            top: -4px;
+            left: -2px;
+            box-shadow: 0 2px 4px rgba(44, 62, 80, 0.3);
+        }
+
+        .hero .tagline {
+            color: #2c3e50;
+            font-size: 1.4em;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .hero .description {
+            color: #555;
+            font-size: 1.1em;
+            margin-bottom: 30px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .cta-btn {
+            display: inline-block;
+            background: #2c3e50;
+            color: white;
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 1.1em;
+            transition: all 0.3s;
+            border: 2px solid #2c3e50;
+        }
+
+        .cta-btn:hover {
+            background: #34495e;
+            border-color: #34495e;
+            transform: translateY(-2px);
+        }
+
+        .cta-btn.secondary {
+            background: transparent;
+            color: #2c3e50;
+        }
+
+        .cta-btn.secondary:hover {
+            background: #2c3e50;
+            color: white;
+        }
+
+        .section {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        .section h2 {
+            color: #2c3e50;
+            margin-bottom: 30px;
+            font-size: 2.2em;
+            text-align: center;
+            border-bottom: 3px solid #34495e;
+            padding-bottom: 15px;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .service-card {
+            background: linear-gradient(135deg, rgba(44, 62, 80, 0.1), rgba(52, 73, 94, 0.1));
+            border-radius: 15px;
+            padding: 30px;
+            border-left: 5px solid #34495e;
+            transition: all 0.3s;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(44, 62, 80, 0.2);
+        }
+
+        .service-icon {
+            font-size: 3em;
+            margin-bottom: 15px;
+            color: #34495e;
+        }
+
+        .service-title {
+            font-size: 1.4em;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 15px;
+        }
+
+        .service-description {
+            color: #555;
+            margin-bottom: 15px;
+        }
+
+        .service-benefits {
+            list-style: none;
+        }
+
+        .service-benefits li {
+            color: #2c3e50;
+            margin-bottom: 8px;
+            position: relative;
+            padding-left: 20px;
+        }
+
+        .service-benefits li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 25px;
+            margin-top: 20px;
+        }
+
+        .stat-card {
+            text-align: center;
+            padding: 25px;
+            background: linear-gradient(135deg, #2c3e50, #34495e);
+            border-radius: 15px;
+            color: white;
+        }
+
+        .stat-number {
+            font-size: 2.5em;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            font-size: 1.1em;
+        }
+
+        .cases-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .case-card {
+            background: rgba(44, 62, 80, 0.05);
+            border-radius: 15px;
+            padding: 30px;
+            border: 2px solid transparent;
+            transition: all 0.3s;
+        }
+
+        .case-card:hover {
+            border-color: #34495e;
+            transform: translateY(-3px);
+        }
+
+        .case-title {
+            font-size: 1.3em;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 15px;
+        }
+
+        .case-challenge {
+            color: #e74c3c;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .case-solution {
+            color: #27ae60;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .case-result {
+            color: #2c3e50;
+            font-weight: 600;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .contact-card {
+            text-align: center;
+            padding: 25px;
+            background: rgba(102, 126, 234, 0.1);
+            border-radius: 15px;
+        }
+
+        .contact-icon {
+            font-size: 2.5em;
+            color: #667eea;
+            margin-bottom: 15px;
+        }
+
+        .contact-title {
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+
+        .contact-info {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .whatsapp-float {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #25d366;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5em;
+            text-decoration: none;
+            box-shadow: 0 4px 15px rgba(44, 62, 80, 0.3);
+            animation: pulse 2s infinite;
+            z-index: 1000;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.1);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        .highlight {
+            background: linear-gradient(120deg, rgba(44, 62, 80, 0.2) 0%, rgba(44, 62, 80, 0.2) 100%);
+            padding: 3px 8px;
+            border-radius: 5px;
+            font-weight: 600;
+        }
+
+
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+            
+            .hero {
+                padding: 40px 20px;
+            }
+            
+            .hero h1 {
+                font-size: 2.2em;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .services-grid,
+            .cases-grid,
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="logo">
+                <div class="logo-container">
+                    <div class="logo-bg"></div>
+                    <div class="logo-text">MSC</div>
+                    <div class="logo-dots">
+                        <div class="logo-dot"></div>
+                        <div class="logo-dot"></div>
+                        <div class="logo-dot"></div>
+                    </div>
+                </div>
+                <div class="logo-subtitle">MATHEUS SOUSA DA CRUZ</div>
+            </div>
+            <div class="tagline">Especialista em Infraestrutura de TI & Sistemas ERP</div>
+            <div class="description">
+                Transformo problemas complexos de TI em soluções eficientes. Com <span class="highlight">7+ anos de experiência</span>, ajudo empresas a otimizar sua infraestrutura, implementar sistemas ERP e garantir a segurança dos dados.
+            </div>
+            <div class="cta-buttons">
+                <a href="#contato" class="cta-btn">💼 Solicitar Orçamento</a>
+                <a href="#servicos" class="cta-btn secondary">🔍 Ver Serviços</a>
+            </div>
+        </section>
+
+        <!-- Estatísticas -->
+        <section class="section">
+            <h2>Resultados Comprovados</h2>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number">7+</div>
+                    <div class="stat-label">Anos de Experiência</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">200+</div>
+                    <div class="stat-label">Usuários Gerenciados</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">99.5%</div>
+                    <div class="stat-label">SLA de Disponibilidade</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">15+</div>
+                    <div class="stat-label">Empresas Atendidas</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Serviços -->
+        <section class="section" id="servicos">
+            <h2>Serviços Especializados</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">🖥️</div>
+                    <div class="service-title">Infraestrutura de TI</div>
+                    <div class="service-description">
+                        Configuração e administração completa de servidores Windows/Linux, redes corporativas e políticas de segurança.
+                    </div>
+                    <ul class="service-benefits">
+                        <li>Configuração de servidores Windows Server</li>
+                        <li>Implementação de Active Directory</li>
+                        <li>Configuração de redes 10Gbps</li>
+                        <li>Políticas de segurança e backup</li>
+                    </ul>
+
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">📊</div>
+                    <div class="service-title">Implementação de ERP</div>
+                    <div class="service-description">
+                        Implantação, customização e suporte de sistemas ERP com integração fiscal completa.
+                    </div>
+                    <ul class="service-benefits">
+                        <li>Análise de requisitos empresariais</li>
+                        <li>Configuração e customização</li>
+                        <li>Integração com SEFAZ/eSocial</li>
+                        <li>Treinamento de usuários</li>
+                    </ul>
+
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">🛡️</div>
+                    <div class="service-title">Segurança e Compliance</div>
+                    <div class="service-description">
+                        Implementação de soluções de segurança corporativa e adequação à LGPD.
+                    </div>
+                    <ul class="service-benefits">
+                        <li>Configuração de Firewall FortiGate</li>
+                        <li>Políticas de segurança LGPD</li>
+                        <li>Auditoria de vulnerabilidades</li>
+                        <li>Plano de contingência</li>
+                    </ul>
+
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">🗄️</div>
+                    <div class="service-title">Banco de Dados</div>
+                    <div class="service-description">
+                        Administração, otimização e migração de bancos de dados PostgreSQL, Oracle e MySQL.
+                    </div>
+                    <ul class="service-benefits">
+                        <li>Otimização de performance</li>
+                        <li>Scripts SQL complexos</li>
+                        <li>Migração de dados</li>
+                        <li>Backup e recovery</li>
+                    </ul>
+
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">⚙️</div>
+                    <div class="service-title">Consultoria ITIL/COBIT</div>
+                    <div class="service-description">
+                        Implementação de governança de TI baseada nas melhores práticas do mercado.
+                    </div>
+                    <ul class="service-benefits">
+                        <li>Framework de governança</li>
+                        <li>Processos de gestão de mudanças</li>
+                        <li>Documentação técnica</li>
+                        <li>Controle de qualidade</li>
+                    </ul>
+
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">🚀</div>
+                    <div class="service-title">Suporte Técnico</div>
+                    <div class="service-description">
+                        Suporte remoto e presencial para resolução rápida de problemas técnicos.
+                    </div>
+                    <ul class="service-benefits">
+                        <li>Suporte sob demanda</li>
+                        <li>Resolução remota</li>
+                        <li>SLA garantido</li>
+                        <li>Manutenção preventiva</li>
+                    </ul>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Casos de Sucesso -->
+        <section class="section">
+            <h2>Casos de Sucesso</h2>
+            <div class="cases-grid">
+                <div class="case-card">
+                    <div class="case-title">Hospital das Clínicas - Modernização Completa</div>
+                    <div class="case-challenge">Desafio: Infraestrutura crítica desatualizada</div>
+                    <div class="case-solution">Solução: Migração de servidores + políticas de segurança</div>
+                    <div class="case-result">Resultado: 40% redução no tempo de recovery + SLA 99.5%</div>
+                </div>
+
+                <div class="case-card">
+                    <div class="case-title">Múltiplas Empresas - Integração Fiscal</div>
+                    <div class="case-challenge">Desafio: Erros constantes na transmissão fiscal</div>
+                    <div class="case-solution">Solução: Automação com APIs SEFAZ/eSocial</div>
+                    <div class="case-result">Resultado: 80% redução de erros + 50% menos tempo</div>
+                </div>
+
+                <div class="case-card">
+                    <div class="case-title">Simus Tecnologia - Upgrade de Rede</div>
+                    <div class="case-challenge">Desafio: Performance limitada da rede corporativa</div>
+                    <div class="case-solution">Solução: Implementação de backbone 10Gbps</div>
+                    <div class="case-result">Resultado: 300% melhoria na performance</div>
+                </div>
+
+                <div class="case-card">
+                    <div class="case-title">Compliance Perícias - Governança TI</div>
+                    <div class="case-challenge">Desafio: Processos de TI desorganizados</div>
+                    <div class="case-solution">Solução: Framework ITIL/COBIT + documentação</div>
+                    <div class="case-result">Resultado: 45% aumento na satisfação dos usuários</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Por que me escolher -->
+        <section class="section">
+            <h2>Por Que Contratar Meus Serviços?</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">⚡</div>
+                    <div class="service-title">Agilidade na Entrega</div>
+                    <div class="service-description">
+                        Projetos entregues no prazo com qualidade garantida. Minha experiência permite identificar soluções rápidas e eficazes.
+                    </div>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">🎯</div>
+                    <div class="service-title">Foco em Resultados</div>
+                    <div class="service-description">
+                        Cada projeto é tratado como se fosse meu próprio negócio. Busco sempre entregar valor real para sua empresa.
+                    </div>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">🔧</div>
+                    <div class="service-title">Expertise Comprovada</div>
+                    <div class="service-description">
+                        7+ anos de experiência, certificações ITIL e COBIT, e histórico de sucesso em projetos complexos.
+                    </div>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">💬</div>
+                    <div class="service-title">Comunicação Clara</div>
+                    <div class="service-description">
+                        Explico conceitos técnicos de forma simples. Você sempre saberá o que está sendo feito e por quê.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contato -->
+        <section class="section" id="contato">
+            <h2>Vamos Conversar Sobre Seu Projeto?</h2>
+            <p style="text-align: center; font-size: 1.2em; color: #555; margin-bottom: 30px;">
+                Disponível para projetos presenciais em <span class="highlight">Ribeirão Preto/SP</span> e remotos em todo o Brasil
+            </p>
+            <div class="contact-grid">
+                <div class="contact-card">
+                    <div class="contact-icon">📱</div>
+                    <div class="contact-title">WhatsApp</div>
+                    <a href="https://wa.me/5516991992213" class="contact-info">(16) 99199-2213</a>
+                    <div style="margin-top: 10px; color: #27ae60; font-weight: 600;">Resposta em até 1 hora</div>
+                </div>
+
+                <div class="contact-card">
+                    <div class="contact-icon">📧</div>
+                    <div class="contact-title">E-mail</div>
+                    <a href="mailto:m.analistadesistemas@gmail.com" class="contact-info">m.analistadesistemas@gmail.com</a>
+                    <div style="margin-top: 10px; color: #27ae60; font-weight: 600;">Orçamento em 24h</div>
+                </div>
+
+                <div class="contact-card">
+                    <div class="contact-icon">💼</div>
+                    <div class="contact-title">LinkedIn</div>
+                    <a href="https://linkedin.com/in/msservice" class="contact-info">linkedin.com/in/msservice</a>
+                    <div style="margin-top: 10px; color: #27ae60; font-weight: 600;">Portfólio completo</div>
+                </div>
+
+                <div class="contact-card">
+                    <div class="contact-icon">📍</div>
+                    <div class="contact-title">Localização</div>
+                    <div class="contact-info">Ribeirão Preto, SP</div>
+                    <div style="margin-top: 10px; color: #27ae60; font-weight: 600;">Atendimento regional</div>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 40px;">
+                <a href="https://wa.me/5516991992213?text=Olá! Gostaria de solicitar um orçamento para um projeto de TI." class="cta-btn" style="font-size: 1.2em; padding: 20px 40px;">
+                    🚀 Solicitar Orçamento Agora
+                </a>
+            </div>
+        </section>
+    </div>
+
+    <!-- WhatsApp Float Button -->
+    <a href="https://wa.me/5516991992213" class="whatsapp-float" title="Fale comigo no WhatsApp">
+        📱
+    </a>
+
+    <script>
+        // Smooth scroll para navegação
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Animação de entrada suave
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        });
+
+        document.querySelectorAll('.section, .service-card, .case-card').forEach(element => {
+            element.style.opacity = '0';
+            element.style.transform = 'translateY(20px)';
+            element.style.transition = 'all 0.6s ease';
+            observer.observe(element);
+        });
+
+        // Contador animado para estatísticas
+        function animateCounters() {
+            const counters = document.querySelectorAll('.stat-number');
+            counters.forEach(counter => {
+                const target = parseInt(counter.textContent.replace(/\D/g, ''));
+                const suffix = counter.textContent.replace(/[0-9]/g, '');
+                let current = 0;
+                const increment = target / 50;
+                
+                const timer = setInterval(() => {
+                    current += increment;
+                    if (current >= target) {
+                        counter.textContent = target + suffix;
+                        clearInterval(timer);
+                    } else {
+                        counter.textContent = Math.floor(current) + suffix;
+                    }
+                }, 50);
+            });
+        }
+
+        // Executar animação dos contadores quando a seção for visível
+        const statsSection = document.querySelector('.stats-grid');
+        if (statsSection) {
+            const statsObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        animateCounters();
+                        statsObserver.unobserve(entry.target);
+                    }
+                });
+            });
+            statsObserver.observe(statsSection);
+        }
+    </script>
+</body>
+</html>
